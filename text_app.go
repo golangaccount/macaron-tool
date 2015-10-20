@@ -11,9 +11,7 @@ import (
 )
 
 func newInstance() *macaron.Macaron {
-	m := macaron.Classic()
-	m.Use(macaron.Logger())
-	m.Use(macaron.Recovery())
+	m := macaron.New()
 	return m
 }
 
