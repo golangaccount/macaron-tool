@@ -1,5 +1,6 @@
-package main
-var maingo = `package main
+package txt
+
+var Projectname=`package main
 
 import (
 	"fmt"

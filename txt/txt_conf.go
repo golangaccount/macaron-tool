@@ -1,6 +1,16 @@
-package main
+package txt
 
-var appconfgo=`package conf
+var Conf_app_conf=`[DEFAULT]
+appname = pjstruct
+httpport = 8080
+
+[dev]
+
+[prod]`
+
+
+
+var Conf_conf_go=`package conf
 
 import (
 	"github.com/Unknwon/goconfig"

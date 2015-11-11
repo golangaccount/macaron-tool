@@ -1,6 +1,6 @@
-package main
+package txt
 
-var router = `//macaron路由执行图
+var Routers_router_go=`//macaron路由执行图
 //
 //1.由go系统调用 macaron的ServeHTTP函数
 //2.ServeHTTP函数内部先执行向macaron注册的beforeroute函数
@@ -35,11 +35,12 @@ var router = `//macaron路由执行图
 package routers
 
 import (
-	"macaron-tool/testnewcmd/controllers"
+	"{{.Appname}}/controllers"
 	"net/http"
 
 	"github.com/Unknwon/macaron"
 	"github.com/macaron-contrib/pongo2"
+	"github.com/macaron-contrib/session"
 )
 
 func Regist(m *macaron.Macaron) {
@@ -55,6 +56,7 @@ func RegistGlobalRouter(m *macaron.Macaron) {
 	//模块的添加
 	m.Use(macaron.Logger())
 	m.Use(macaron.Recovery())
+	m.Use(session.Sessioner())
 
 	//静态资源的添加
 	m.Use(macaron.Static("static"))
@@ -80,6 +82,10 @@ func RegistGroupRouter(m *macaron.Macaron) {
 //注册单独的路由
 func RegistRouter(m *macaron.Macaron) {
 	m.Any("/", controllers.DefaultRouter)
+	m.Any("/regist",controllers.Regist)
+	m.Any("/forgetpassword",controllers.ForgetPassword)
+	
+	m.NotFound(controllers.Page404)//404page
 }
 
 func RegistBeforeRouter(m *macaron.Macaron) {
